@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 71489452}
   m_Layer: 8
   m_Name: NPC_Base
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,11 +169,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4f0f729798ec14da18bcee1cc32fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
-  angle: 90
+  radius: 1.3
+  angle: 65.1
   bodyMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  alertTime: 3
   wanderPoints:
   - {fileID: 1365610879}
   - {fileID: 954384125}
@@ -197,7 +198,7 @@ MonoBehaviour:
   - {fileID: 1273402961}
   - {fileID: 165414489}
   alertPoint: {fileID: 1856252760}
-  alertTime: 3
+  deadSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
 --- !u!195 &71489455
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -392,7 +393,7 @@ GameObject:
   - component: {fileID: 269306053}
   m_Layer: 8
   m_Name: NPC_Base (1)
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,7 +426,7 @@ MonoBehaviour:
   angle: 90
   bodyMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
@@ -442,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  alertTime: 3
   wanderPoints:
   - {fileID: 1365610879}
   - {fileID: 954384125}
@@ -449,7 +451,7 @@ MonoBehaviour:
   - {fileID: 1273402961}
   - {fileID: 165414489}
   alertPoint: {fileID: 1856252760}
-  alertTime: 3
+  deadSprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
 --- !u!195 &269306056
 NavMeshAgent:
   m_ObjectHideFlags: 0
