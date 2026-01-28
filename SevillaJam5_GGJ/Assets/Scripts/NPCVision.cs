@@ -31,4 +31,10 @@ public class NPCVision : MonoBehaviour
             }
         }
     }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 }

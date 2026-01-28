@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
             TryKill();
     }
 
