@@ -1,11 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
     public float killRange = 1f;
     public LayerMask npcLayer;
+    public AudioSource audioSource; 
+    public AudioClip Killclip;
 
+    [Header("VFX")]
+    public VFX vfxController;
     void Update()
     {
         Move();
@@ -29,7 +33,13 @@ public class PlayerController : MonoBehaviour
         {
             NPCController npc = hit.GetComponent<NPCController>();
             if (npc)
+            {
                 npc.Die();
+                audioSource.PlayOneShot(Killclip);
+                CameraShake.Instance.Shake(0.12f, 0.08f);
+                if (vfxController != null)
+                    vfxController.ActivarEfecto();
+            }
         }
     }
 }

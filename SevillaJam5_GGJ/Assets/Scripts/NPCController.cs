@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class NPCController : MonoBehaviour
 {
@@ -11,13 +13,26 @@ public class NPCController : MonoBehaviour
     public Transform[] wanderPoints;
     public Transform alertPoint;
 
+    [Header("Wander Settings")]
+    public float wanderRadius = 5f;
+    public float minWaitTime = 1.5f;
+    public float maxWaitTime = 4f;
+
     [Header("Dead")]
     public Sprite deadSprite;
+
+    [Header("Alert Icon")]
+    public GameObject alertIcon;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip screamClip;
 
     private NavMeshAgent agent;
     private SpriteRenderer sr;
     private float alertTimer = 0f;
     private bool hasSeenBody = false;
+    private bool isWaiting = false;
 
     // Dirección de movimiento para visión y sprite
     public Vector2 MoveDirection { get; private set; } = Vector2.right;
@@ -35,21 +50,27 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
+        if (currentState == NPCState.Dead) return; // <--- evita todo si está muerto
+
         // Actualizar dirección de movimiento
         if (agent.velocity.sqrMagnitude > 0.01f)
         {
             MoveDirection = agent.velocity.normalized;
 
-            // Girar sprite hacia la dirección
-            float angle = Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            if (sr != null)
+            {
+                if (MoveDirection.x > 0.1f)
+                    sr.flipX = false;
+                else if (MoveDirection.x < -0.1f)
+                    sr.flipX = true;
+            }
         }
 
         switch (currentState)
         {
             case NPCState.Walking:
-                if (!agent.hasPath)
-                    MoveRandom();
+                if (!agent.hasPath && !isWaiting)
+                    StartCoroutine(WanderRoutine());
                 break;
 
             case NPCState.Alerted:
@@ -58,16 +79,58 @@ public class NPCController : MonoBehaviour
         }
     }
 
+    // Movimiento libre + pausas
+    IEnumerator WanderRoutine()
+    {
+        isWaiting = true;
+
+        float waitTime = Random.Range(minWaitTime, maxWaitTime);
+        yield return new WaitForSeconds(waitTime);
+
+        // Evitar mover si el NPC murió mientras esperaba
+        if (currentState == NPCState.Dead || agent == null || !agent.enabled)
+        {
+            isWaiting = false;
+            yield break;
+        }
+
+        MoveRandom();
+
+        isWaiting = false;
+    }
+
     void MoveRandom()
     {
-        if (wanderPoints.Length == 0) return;
+        // Evitar mover NPC si está muerto o agent desactivado
+        if (currentState == NPCState.Dead || agent == null || !agent.enabled) return;
 
-        Transform target = wanderPoints[Random.Range(0, wanderPoints.Length)];
-        agent.SetDestination(target.position);
+        if (wanderPoints.Length == 0 || Random.value < 0.7f)
+        {
+            Vector3 target = RandomNavMeshLocation(wanderRadius);
+            agent.SetDestination(target);
+        }
+        else
+        {
+            Transform target = wanderPoints[Random.Range(0, wanderPoints.Length)];
+            agent.SetDestination(target.position);
+        }
+    }
+
+    // Obtener punto aleatorio en el NavMesh
+    Vector3 RandomNavMeshLocation(float radius)
+    {
+        Vector2 randomCircle = Random.insideUnitCircle * radius;
+        Vector3 randomDirection = new Vector3(randomCircle.x, randomCircle.y, 0) + transform.position;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, radius, NavMesh.AllAreas);
+        return hit.position;
     }
 
     void HandleAlert()
     {
+        if (agent == null || alertPoint == null) return; // <-- evita crash
+
         if (!agent.hasPath)
         {
             agent.SetDestination(alertPoint.position);
@@ -93,11 +156,41 @@ public class NPCController : MonoBehaviour
 
         hasSeenBody = true;
 
+        // Cambiar estado a Alerted
         ChangeState(NPCState.Alerted);
 
-        if (agent.enabled)
+        // Activar icono de alerta
+        if (alertIcon)
+            alertIcon.SetActive(true);
+
+        // Detener movimiento actual
+        if (agent != null && agent.enabled)
         {
             agent.ResetPath();
+            agent.isStopped = true; // <-- se queda parado
+        }
+
+        // Iniciar corrutina para quedarse parado y gritar
+        StartCoroutine(ReactToBody());
+    }
+
+    // Corrutina para reaccionar al cuerpo
+    IEnumerator ReactToBody()
+    {
+        // Reproducir sonido con pitch aleatorio
+        if (audioSource != null && screamClip != null)
+        {
+            audioSource.pitch = Random.Range(0.9f, 1.1f); // Pitch aleatorio
+            audioSource.PlayOneShot(screamClip);
+        }
+
+        // Esperar 3 segundos
+        yield return new WaitForSeconds(3f);
+
+        // Continuar hacia el punto de alerta
+        if (agent != null && agent.enabled && alertPoint != null)
+        {
+            agent.isStopped = false;
             agent.SetDestination(alertPoint.position);
         }
     }
@@ -114,7 +207,6 @@ public class NPCController : MonoBehaviour
 
         // Cambiar tag para que otros NPCs lo vean
         gameObject.tag = "DeadBody";
-
         gameObject.layer = LayerMask.NameToLayer("DeadBody");
     }
 
@@ -122,5 +214,8 @@ public class NPCController : MonoBehaviour
     {
         currentState = newState;
         alertTimer = 0f;
+
+        if (newState != NPCState.Alerted && alertIcon)
+            alertIcon.SetActive(false);
     }
 }
