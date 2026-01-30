@@ -42,10 +42,24 @@ public class TypewriterText : MonoBehaviour
         isTyping = true;
         audioSource.PlayOneShot(lineSound);
 
-        foreach (char c in lines[index].ToCharArray())
+        textUI.text = "";
+
+        string line = lines[index];
+        bool insideTag = false;
+
+        foreach (char c in line)
         {
+            if (c == '<')
+                insideTag = true;
+
             textUI.text += c;
-            yield return new WaitForSeconds(typingSpeed);
+
+            if (c == '>')
+                insideTag = false;
+
+            // Solo esperamos si NO estamos dentro de una etiqueta
+            if (!insideTag)
+                yield return new WaitForSeconds(typingSpeed);
         }
 
         isTyping = false;

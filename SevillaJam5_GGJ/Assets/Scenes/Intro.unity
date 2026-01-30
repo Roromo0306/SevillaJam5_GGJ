@@ -552,7 +552,8 @@ MonoBehaviour:
   - agente, eres el elegido
   - debes matarlos a todos
   - busca al objetivo y eliminalo
-  typingSpeed: 0.05
+  - "No conf\xEDes en <link=shake>nadie</link>."
+  typingSpeed: 0.09
   audioSource: {fileID: 71868807}
   lineSound: {fileID: 8300000, guid: 114b1b19598959f43aad5d983a7fc1bd, type: 3}
 --- !u!1 &1652815685
@@ -634,6 +635,7 @@ GameObject:
   - component: {fileID: 2105389712}
   - component: {fileID: 2105389711}
   - component: {fileID: 2105389710}
+  - component: {fileID: 2105389713}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -757,6 +759,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2105389713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105389709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9199332d0aeb4b9458915a7639e1c66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 1.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
