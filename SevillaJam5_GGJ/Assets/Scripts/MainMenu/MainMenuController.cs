@@ -31,7 +31,7 @@ public class MainMenuController : MonoBehaviour
 
     public void Jugar()
     {
-        SceneManager.LoadScene("Intro");
+        FadeManagerPersistente.Instance.LoadSceneWithFade("Intro");
     }
 
     public void CreditosAbrir()

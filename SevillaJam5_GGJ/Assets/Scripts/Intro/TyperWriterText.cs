@@ -1,15 +1,21 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TypewriterText : MonoBehaviour
 {
+    [Header("UI y Texto")]
     public TextMeshProUGUI textUI;
     public string[] lines;
     public float typingSpeed = 0.05f;
 
+    [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip lineSound;
+
+    [Header("Escena siguiente")]
+    public string nextSceneName; // Nombre de la escena a cargar al terminar
 
     private int index;
     private bool isTyping;
@@ -17,7 +23,10 @@ public class TypewriterText : MonoBehaviour
     void Start()
     {
         textUI.text = "";
-        StartCoroutine(TypeLine());
+        if (lines.Length > 0)
+            StartCoroutine(TypeLine());
+        else
+            LoadNextScene();
     }
 
     void Update()
@@ -40,10 +49,7 @@ public class TypewriterText : MonoBehaviour
     IEnumerator TypeLine()
     {
         isTyping = true;
-        audioSource.PlayOneShot(lineSound);
-
         textUI.text = "";
-
         string line = lines[index];
         bool insideTag = false;
 
@@ -53,6 +59,13 @@ public class TypewriterText : MonoBehaviour
                 insideTag = true;
 
             textUI.text += c;
+
+            if (!insideTag && lineSound != null)
+            {
+                // Reproducir el sonido por letra sin superponer
+                if (!audioSource.isPlaying)
+                    audioSource.PlayOneShot(lineSound);
+            }
 
             if (c == '>')
                 insideTag = false;
@@ -67,11 +80,22 @@ public class TypewriterText : MonoBehaviour
 
     void NextLine()
     {
-        if (index < lines.Length - 1)
+        index++;
+
+        if (index < lines.Length)
         {
-            index++;
             textUI.text = "";
             StartCoroutine(TypeLine());
         }
+        else
+        {
+            LoadNextScene();
+        }
+    }
+
+    void LoadNextScene()
+    {
+        if (!string.IsNullOrEmpty(nextSceneName))
+            FadeManagerPersistente.Instance.LoadSceneWithFade(nextSceneName);
     }
 }

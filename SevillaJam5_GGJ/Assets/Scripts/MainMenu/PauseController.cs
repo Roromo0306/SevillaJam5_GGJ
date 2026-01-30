@@ -35,13 +35,12 @@ public class PauseController : MonoBehaviour
 
     public void Reiniciar()
     {
-        SceneManager.LoadScene("Game");
+        FadeManagerPersistente.Instance.LoadSceneWithFade("Game");
     }
 
     public void MainMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
-        
+        FadeManagerPersistente.Instance.LoadSceneWithFade("MainMenu");
     }
 }
