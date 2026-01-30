@@ -18,6 +18,10 @@ public class NPCController : MonoBehaviour
     public float minWaitTime = 1.5f;
     public float maxWaitTime = 4f;
 
+    [Header("Movement Settings")]
+    public MovementType movementType = MovementType.Free;
+    private int currentWaypointIndex = 0;
+
     [Header("Dead")]
     public Sprite deadSprite;
 
@@ -27,6 +31,9 @@ public class NPCController : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip screamClip;
+
+    [Header("Boss Settings")]
+    public bool isBoss = false;
 
     private NavMeshAgent agent;
     private SpriteRenderer sr;
@@ -87,7 +94,6 @@ public class NPCController : MonoBehaviour
         float waitTime = Random.Range(minWaitTime, maxWaitTime);
         yield return new WaitForSeconds(waitTime);
 
-        // Evitar mover si el NPC murió mientras esperaba
         if (currentState == NPCState.Dead || agent == null || !agent.enabled)
         {
             isWaiting = false;
@@ -101,18 +107,28 @@ public class NPCController : MonoBehaviour
 
     void MoveRandom()
     {
-        // Evitar mover NPC si está muerto o agent desactivado
         if (currentState == NPCState.Dead || agent == null || !agent.enabled) return;
 
-        if (wanderPoints.Length == 0 || Random.value < 0.7f)
+        switch (movementType)
         {
-            Vector3 target = RandomNavMeshLocation(wanderRadius);
-            agent.SetDestination(target);
-        }
-        else
-        {
-            Transform target = wanderPoints[Random.Range(0, wanderPoints.Length)];
-            agent.SetDestination(target.position);
+            case MovementType.Free:
+                if (wanderPoints.Length == 0 || Random.value < 0.7f)
+                {
+                    Vector3 target = RandomNavMeshLocation(wanderRadius);
+                    agent.SetDestination(target);
+                }
+                else
+                {
+                    Transform target = wanderPoints[Random.Range(0, wanderPoints.Length)];
+                    agent.SetDestination(target.position);
+                }
+                break;
+
+            case MovementType.Waypoints:
+                if (wanderPoints.Length == 0) return;
+                agent.SetDestination(wanderPoints[currentWaypointIndex].position);
+                currentWaypointIndex = (currentWaypointIndex + 1) % wanderPoints.Length;
+                break;
         }
     }
 
