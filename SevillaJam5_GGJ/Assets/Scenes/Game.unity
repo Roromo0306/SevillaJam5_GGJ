@@ -207,6 +207,7 @@ MonoBehaviour:
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
   isBoss: 0
+  timerController: {fileID: 1409468363}
 --- !u!195 &71489455
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -602,6 +603,7 @@ MonoBehaviour:
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
   isBoss: 0
+  timerController: {fileID: 1409468363}
 --- !u!195 &186853572
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -833,6 +835,7 @@ MonoBehaviour:
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
   isBoss: 0
+  timerController: {fileID: 1409468363}
 --- !u!195 &269306056
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3311,7 +3314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c146fb285b39641bd338713ee65d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoEnSegundos: 5
+  tiempoEnSegundos: 60
   timerText: {fileID: 516536556}
   audioSource: {fileID: 519420034}
   clip1: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}

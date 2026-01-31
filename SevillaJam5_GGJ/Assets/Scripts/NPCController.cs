@@ -41,6 +41,8 @@ public class NPCController : MonoBehaviour
     private bool hasSeenBody = false;
     private bool isWaiting = false;
 
+    public TimerController timerController;
+
     // Dirección de movimiento para visión y sprite
     public Vector2 MoveDirection { get; private set; } = Vector2.right;
 
@@ -161,6 +163,7 @@ public class NPCController : MonoBehaviour
             if (alertTimer >= alertTime)
             {
                 GameManager.Instance.GameOver();
+                
             }
         }
     }

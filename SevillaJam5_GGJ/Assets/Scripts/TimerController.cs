@@ -62,7 +62,7 @@ public class TimerController : MonoBehaviour
         StartCoroutine(AlertaFinal());
     }
 
-    IEnumerator AlertaFinal()
+    public IEnumerator AlertaFinal()
     {
         // Activar panel al empezar la alerta
         if (pantalla != null)
