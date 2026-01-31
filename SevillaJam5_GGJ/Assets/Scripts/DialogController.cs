@@ -9,7 +9,7 @@ public class DialogController : MonoBehaviour
     public GameObject dialogBox;
     public TextMeshProUGUI dialogText;
     public float lettersPerSecond = 20f;
-
+    public System.Action onDialogClose;
     public static DialogController Instance { get; private set; }
 
     private Dialog currentDialog;
@@ -35,13 +35,13 @@ public class DialogController : MonoBehaviour
         }
     }
 
-    public void ShowDialog(Dialog dialog)
+    public void ShowDialog(Dialog dialog, NPCController npc)
     {
         currentDialog = dialog;
         currentLineIndex = 0;
-
+        currentNPC = npc; 
         dialogBox.SetActive(true);
-        StartLine();
+        StartLine(); ;
     }
 
     void StartLine()
@@ -95,5 +95,9 @@ public class DialogController : MonoBehaviour
         dialogBox.SetActive(false);
         dialogText.text = "";
         currentDialog = null;
+
+        // Ejecutar callback si existe
+        onDialogClose?.Invoke();
+        onDialogClose = null;
     }
 }

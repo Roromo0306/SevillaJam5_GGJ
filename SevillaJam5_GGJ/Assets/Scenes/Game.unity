@@ -606,7 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  alertTime: 3
+  alertTime: 3.04
   wanderPoints:
   - {fileID: 1365610879}
   - {fileID: 954384125}

@@ -277,6 +277,22 @@ public class NPCController : MonoBehaviour
             agent.isStopped = true;
         }
 
-        DialogController.Instance.ShowDialog(dialog);
+        // Asignamos el callback para reactivar movimiento cuando se cierre el diálogo
+        DialogController.Instance.onDialogClose = FinishInteraction;
+
+        DialogController.Instance.ShowDialog(dialog,this);
+    }
+
+    public void FinishInteraction()
+    {
+        if (currentState == NPCState.Interacting)
+        {
+            ChangeState(NPCState.Walking);
+
+            if (agent != null && agent.enabled)
+            {
+                agent.isStopped = false;
+            }
+        }
     }
 }
