@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
                 if (npc.isBoss)
                 {
-                    SceneManager.LoadScene("You Win");
+                    FadeManagerPersistente.Instance.LoadSceneWithFade("YouWin");
                 }
                 else
                 {
