@@ -556,7 +556,7 @@ MonoBehaviour:
   typingSpeed: 0.09
   audioSource: {fileID: 71868807}
   lineSound: {fileID: 8300000, guid: 114b1b19598959f43aad5d983a7fc1bd, type: 3}
-  nextSceneName: SampleScene
+  nextSceneName: Game
 --- !u!1 &1652815685
 GameObject:
   m_ObjectHideFlags: 0
