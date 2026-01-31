@@ -496,6 +496,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1423681794748092232, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.075659275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423681794748092232, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423681794748092232, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423681794748092232, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423681794748092232, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0031856298
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423681794748092232, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.365
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -506,6 +530,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1142999243}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1142999244}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 9ce19df9faaeb0648a4cc6918b27c296, type: 3}
 --- !u!1 &1142999239 stripped
 GameObject:
@@ -545,6 +572,27 @@ MonoBehaviour:
   m_SolverEditorData:
   - color: {r: 0, g: 1, b: 0, a: 1}
     showGizmo: 1
+--- !u!95 &1142999244
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142999239}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5de038f1c63aef946888ff59a5cd19b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1504988687
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,9 +718,9 @@ MonoBehaviour:
     - {fileID: 1142999240}
     - {fileID: 1142999242}
     m_DefaultLocalRotations:
-    - {x: 0, y: 0, z: -0.99701124, w: 0.077257134}
+    - {x: -0, y: 0, z: -0.997976, w: -0.06359179}
     - {x: 0, y: 0, z: -0.0636093, w: 0.9979749}
-    - {x: -0, y: -0, z: 0.7017226, w: 0.7124504}
+    - {x: 0, y: 0, z: 0.7366108, w: 0.6763169}
     m_StoredLocalRotations:
     - {x: 0, y: 0, z: 0, w: 0}
     - {x: 0, y: 0, z: 0, w: 0}
