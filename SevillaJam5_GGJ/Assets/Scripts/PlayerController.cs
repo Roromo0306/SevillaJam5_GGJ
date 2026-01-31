@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement; // <-- para cambiar escenas
+using UnityEngine.SceneManagement; 
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask npcLayer;
     public AudioSource audioSource;
     public AudioClip Killclip;
+    public AudioClip desenmascararClip;
 
     [Header("Kill Cooldown")]
     public float killCooldown = 3f;
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Desenmascarar")]
     public float unmaskRange = 1.5f;
-    public TextMeshProUGUI dialogText; // para mostrar "ese no era"
+    public TextMeshProUGUI dialogText; 
     public float dialogDuration = 2f;
 
     [Header("Animator")]
@@ -140,6 +141,7 @@ public class PlayerController : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, unmaskRange);
         foreach (Collider2D hit in hits)
         {
+            audioSource.PlayOneShot(desenmascararClip);
             NPCController npc = hit.GetComponent<NPCController>();
             if (npc != null && npc.currentState == NPCState.Dead && !npc.isUnmasked)
             {

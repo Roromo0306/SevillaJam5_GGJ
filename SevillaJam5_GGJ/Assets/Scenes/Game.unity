@@ -209,7 +209,14 @@ MonoBehaviour:
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
   isBoss: 1
+  clip1: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
+  clip2: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
+  volumen: 0.7
   dialog: {fileID: 71489460}
+  pantalla: {fileID: 1066599243}
+  alpha: 0.5
+  duracionAlerta: 5
+  velocidadParpadeo: 0.2
   timerController: {fileID: 1409468363}
   isUnmasked: 0
 --- !u!195 &71489455
@@ -625,7 +632,14 @@ MonoBehaviour:
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
   isBoss: 0
+  clip1: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
+  clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
+  volumen: 0.7
   dialog: {fileID: 186853577}
+  pantalla: {fileID: 1066599243}
+  alpha: 0.5
+  duracionAlerta: 5
+  velocidadParpadeo: 0.2
   timerController: {fileID: 1409468363}
   isUnmasked: 0
 --- !u!195 &186853572
@@ -875,7 +889,14 @@ MonoBehaviour:
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
   isBoss: 0
+  clip1: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
+  clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
+  volumen: 0.7
   dialog: {fileID: 269306061}
+  pantalla: {fileID: 1066599243}
+  alpha: 0.5
+  duracionAlerta: 5
+  velocidadParpadeo: 0.2
   timerController: {fileID: 1409468363}
   isUnmasked: 0
 --- !u!195 &269306056
@@ -4333,6 +4354,10 @@ PrefabInstance:
       propertyPath: cooldownCircle
       value: 
       objectReference: {fileID: 716352305}
+    - target: {fileID: 5084800620865750340, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
+      propertyPath: desenmascararClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9601538b063c74b4ea4e090df523d705, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

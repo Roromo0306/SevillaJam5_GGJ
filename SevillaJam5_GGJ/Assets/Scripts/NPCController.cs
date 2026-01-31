@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class NPCController : MonoBehaviour
@@ -39,8 +40,19 @@ public class NPCController : MonoBehaviour
     [Header("Boss Settings")]
     public bool isBoss = false;
 
+
+    [Header("Efectos al Terminar")]
+    public AudioClip clip1;         // Primer sonido
+    public AudioClip clip2;         // Segundo sonido
+    [Range(0f, 1f)] public float volumen = 1f; // Volumen de ambos clips
+
     [Header("Dialog")]
     public Dialog dialog;
+
+    public Image pantalla;          // Panel de policía (sirena)
+    [Range(0f, 1f)] public float alpha = 0.5f; // Opacidad de la imagen durante la alerta
+    public float duracionAlerta = 5f;      // Duración del parpadeo
+    public float velocidadParpadeo = 0.2f; // Tiempo entre cambios de color
 
     private NavMeshAgent agent;
     private SpriteRenderer sr;
@@ -49,7 +61,7 @@ public class NPCController : MonoBehaviour
     private bool isWaiting = false;
     private bool dialogActive = false;
     public TimerController timerController;
-
+    private bool alertaFinalIniciada = false;
     [HideInInspector]
     public bool isUnmasked = false;
 
@@ -176,10 +188,10 @@ public class NPCController : MonoBehaviour
         {
             alertTimer += Time.deltaTime;
 
-            if (alertTimer >= alertTime)
+            if (alertTimer >= alertTime && !alertaFinalIniciada)
             {
-                GameManager.Instance.GameOver();
-                
+                alertaFinalIniciada = true;
+                StartCoroutine(AlertaFinal());
             }
         }
     }
@@ -297,5 +309,59 @@ public class NPCController : MonoBehaviour
                 agent.isStopped = false;
             }
         }
+    }
+
+    public IEnumerator AlertaFinal()
+    {
+        // Activar panel al empezar la alerta
+        if (pantalla != null)
+            pantalla.gameObject.SetActive(true);
+
+        // Reproducir ambos clips simultáneamente
+        if (audioSource != null)
+        {
+            if (clip1 != null) audioSource.PlayOneShot(clip1, volumen);
+            if (clip2 != null) audioSource.PlayOneShot(clip2, volumen);
+        }
+
+        float tiempoTranscurrido = 0f;
+        bool colorRojo = true;
+
+        while (tiempoTranscurrido < duracionAlerta)
+        {
+            if (pantalla != null)
+            {
+                Color colorActual = colorRojo ? Color.red : Color.blue;
+                colorActual.a = alpha; // Ajusta la opacidad
+                pantalla.color = colorActual;
+            }
+
+            colorRojo = !colorRojo;
+
+            yield return new WaitForSeconds(velocidadParpadeo);
+            tiempoTranscurrido += velocidadParpadeo;
+        }
+
+        // Dejar la pantalla transparente o desactivada al final
+        if (pantalla != null)
+            pantalla.gameObject.SetActive(false);
+
+        // Llamar a GameOver seguro
+        GameOver();
+    }
+
+    void GameOver()
+    {
+        if (FadeManagerPersistente.Instance != null)
+        {
+            FadeManagerPersistente.Instance.LoadSceneWithFade("MainMenu");
+        }
+        else
+        {
+            Debug.LogWarning("FadeManagerPersistente.Instance no está inicializado. Cargando MainMenu sin fade.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        }
+
+        Debug.Log("GAME OVER");
     }
 }
