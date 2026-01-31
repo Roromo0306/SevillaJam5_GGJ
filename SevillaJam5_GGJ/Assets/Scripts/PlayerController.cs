@@ -43,6 +43,20 @@ public class PlayerController : MonoBehaviour
 
         Vector2 dir = new Vector2(h, v).normalized;
         transform.Translate(dir * speed * Time.deltaTime);
+
+        
+        if (h > 0.01f) 
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x); 
+            transform.localScale = scale;
+        }
+        else if (h < -0.01f) 
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Abs(scale.x); 
+            transform.localScale = scale;
+        }
     }
 
     void TryKill()
