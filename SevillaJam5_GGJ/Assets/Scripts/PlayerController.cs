@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI dialogText; // para mostrar "ese no era"
     public float dialogDuration = 2f;
 
+    [Header("Animator")]
+    public Animator animator;
+
     private void Start()
     {
         if (cooldownCircle != null) cooldownCircle.gameObject.SetActive(false);
@@ -53,6 +56,8 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
@@ -61,15 +66,21 @@ public class PlayerController : MonoBehaviour
 
         if (h > 0.01f)
         {
+            animator.SetBool("isWalking", true);
             Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
         else if (h < -0.01f)
         {
+            animator.SetBool("isWalking", true);
             Vector3 scale = transform.localScale;
             scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
+        }
+        else if(h == 0)
+        {
+            animator.SetBool("isWalking", false);
         }
     }
 
