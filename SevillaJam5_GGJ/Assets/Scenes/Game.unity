@@ -208,7 +208,7 @@ MonoBehaviour:
   alertIcon: {fileID: 786584472}
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
-  isBoss: 0
+  isBoss: 1
   dialog: {fileID: 71489460}
   timerController: {fileID: 1409468363}
 --- !u!195 &71489455
@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 186853571}
   - component: {fileID: 186853570}
   - component: {fileID: 186853569}
+  - component: {fileID: 186853577}
   m_Layer: 8
   m_Name: NPC_Base (2)
   m_TagString: NPC
@@ -623,7 +624,7 @@ MonoBehaviour:
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
   isBoss: 0
-  dialog: {fileID: 0}
+  dialog: {fileID: 186853577}
   timerController: {fileID: 1409468363}
 --- !u!195 &186853572
 NavMeshAgent:
@@ -771,6 +772,20 @@ Transform:
   - {fileID: 1250326351}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &186853577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186853568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05db8bd381484ef47997de8eba9e1693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - jjujuu
 --- !u!1 &269306052
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +802,7 @@ GameObject:
   - component: {fileID: 269306055}
   - component: {fileID: 269306054}
   - component: {fileID: 269306053}
+  - component: {fileID: 269306061}
   m_Layer: 8
   m_Name: NPC_Base (1)
   m_TagString: NPC
@@ -857,7 +873,7 @@ MonoBehaviour:
   audioSource: {fileID: 519420034}
   screamClip: {fileID: 8300000, guid: 998a136fe89390c44b6febfb342e2625, type: 3}
   isBoss: 0
-  dialog: {fileID: 0}
+  dialog: {fileID: 269306061}
   timerController: {fileID: 1409468363}
 --- !u!195 &269306056
 NavMeshAgent:
@@ -1005,6 +1021,21 @@ Transform:
   - {fileID: 380071906}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269306061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269306052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05db8bd381484ef47997de8eba9e1693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - tututu
+  - gfgdgd
 --- !u!1 &279134044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,7 +2249,7 @@ GameObject:
   - component: {fileID: 716352306}
   - component: {fileID: 716352305}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Cooldown Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3930,7 +3961,7 @@ GameObject:
   - component: {fileID: 1848199730}
   - component: {fileID: 1848199729}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Cooldown_Numero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

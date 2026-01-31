@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool canKill = true;
 
     [Header("UI Elements")]
-    public Image cooldownCircle; // Imagen tipo "Filled" para el círculo
+    public Image cooldownCircle; 
     public TextMeshProUGUI cooldownText;
 
     [Header("VFX")]

@@ -277,6 +277,6 @@ public class NPCController : MonoBehaviour
             agent.isStopped = true;
         }
 
-        DialogController.Instance.ShowDialog(dialog, this);
+        DialogController.Instance.ShowDialog(dialog);
     }
 }

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogController : MonoBehaviour
 {
@@ -23,9 +22,6 @@ public class DialogController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
-        if (dialogBox != null)
-            dialogBox.SetActive(false);
     }
 
     private void Update()
@@ -38,10 +34,9 @@ public class DialogController : MonoBehaviour
         }
     }
 
-    public void ShowDialog(Dialog dialog, NPCController npc)
+    public void ShowDialog(Dialog dialog)
     {
         currentDialog = dialog;
-        currentNPC = npc;
         currentLineIndex = 0;
 
         dialogBox.SetActive(true);
@@ -98,16 +93,6 @@ public class DialogController : MonoBehaviour
     {
         dialogBox.SetActive(false);
         dialogText.text = "";
-
-        if (currentNPC != null)
-        {
-            currentNPC.ChangeState(NPCState.Walking);
-
-            if (currentNPC.GetComponent<NavMeshAgent>() != null)
-                currentNPC.GetComponent<NavMeshAgent>().isStopped = false;
-        }
-
-        currentNPC = null;
         currentDialog = null;
     }
 }
