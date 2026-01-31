@@ -22,6 +22,7 @@ public class DialogController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        dialogBox.SetActive(false);
     }
 
     private void Update()
