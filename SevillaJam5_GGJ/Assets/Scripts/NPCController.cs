@@ -22,6 +22,10 @@ public class NPCController : MonoBehaviour
     public MovementType movementType = MovementType.Free;
     private int currentWaypointIndex = 0;
 
+    [Header("Interaction")]
+    public float interactRadius = 1.5f;
+    private bool playerInRange = false;
+
     [Header("Dead")]
     public Sprite deadSprite;
 
@@ -35,12 +39,15 @@ public class NPCController : MonoBehaviour
     [Header("Boss Settings")]
     public bool isBoss = false;
 
+    [Header("Dialog")]
+    public Dialog dialog;
+
     private NavMeshAgent agent;
     private SpriteRenderer sr;
     private float alertTimer = 0f;
     private bool hasSeenBody = false;
     private bool isWaiting = false;
-
+    private bool dialogActive = false;
     public TimerController timerController;
 
     // Dirección de movimiento para visión y sprite
@@ -59,7 +66,8 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
-        if (currentState == NPCState.Dead) return; // <--- evita todo si está muerto
+        if (currentState == NPCState.Dead) return; 
+        if (currentState == NPCState.Interacting)return;
 
         // Actualizar dirección de movimiento
         if (agent.velocity.sqrMagnitude > 0.01f)
@@ -85,6 +93,11 @@ public class NPCController : MonoBehaviour
             case NPCState.Alerted:
                 HandleAlert();
                 break;
+        }
+
+        if (playerInRange && Input.GetKeyDown(KeyCode.Space))
+        {
+            Interact();
         }
     }
 
@@ -229,12 +242,41 @@ public class NPCController : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("DeadBody");
     }
 
-    void ChangeState(NPCState newState)
+    public void ChangeState(NPCState newState)
     {
         currentState = newState;
         alertTimer = 0f;
 
         if (newState != NPCState.Alerted && alertIcon)
             alertIcon.SetActive(false);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+    public void Interact()
+    {
+        if (currentState == NPCState.Interacting) return;
+
+        ChangeState(NPCState.Interacting);
+
+        if (agent != null && agent.enabled)
+        {
+            agent.ResetPath();
+            agent.isStopped = true;
+        }
+
+        DialogController.Instance.ShowDialog(dialog, this);
     }
 }
