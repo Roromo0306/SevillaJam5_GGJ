@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ---------- NUEVO: desenmascarar NPC ----------
+   
     void TryUnmask()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, unmaskRange);
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
             NPCController npc = hit.GetComponent<NPCController>();
             if (npc != null && npc.currentState == NPCState.Dead && !npc.isUnmasked)
             {
-                npc.isUnmasked = true; // marcamos que ya se desenmascaró
+                npc.isUnmasked = true; 
 
                 if (npc.isBoss)
                 {
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(ShowTemporaryDialog("ese no era", dialogDuration));
                 }
 
-                break; // solo desenmascarar un NPC a la vez
+                break;
             }
         }
     }
@@ -169,14 +169,14 @@ public class PlayerController : MonoBehaviour
         dialogText.gameObject.SetActive(true);
 
         // Efecto de escritura
-        float letterDelay = 0.05f; // 50ms entre letras, puedes ajustar
+        float letterDelay = 0.05f; 
         foreach (char letter in message)
         {
             dialogText.text += letter;
             yield return new WaitForSeconds(letterDelay);
         }
 
-        // Esperar un tiempo después de escribir todo el texto
+        
         yield return new WaitForSeconds(duration);
 
         dialogText.gameObject.SetActive(false);

@@ -70,7 +70,6 @@ public class DialogController : MonoBehaviour
     {
         if (isTyping)
         {
-            // Completar la línea instantáneamente
             StopCoroutine(typingCoroutine);
             dialogText.text = currentDialog.Lines[currentLineIndex];
             isTyping = false;
@@ -96,7 +95,7 @@ public class DialogController : MonoBehaviour
         dialogText.text = "";
         currentDialog = null;
 
-        // Ejecutar callback si existe
+        
         onDialogClose?.Invoke();
         onDialogClose = null;
     }

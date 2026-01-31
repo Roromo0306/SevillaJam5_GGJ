@@ -42,17 +42,17 @@ public class NPCController : MonoBehaviour
 
 
     [Header("Efectos al Terminar")]
-    public AudioClip clip1;         // Primer sonido
-    public AudioClip clip2;         // Segundo sonido
-    [Range(0f, 1f)] public float volumen = 1f; // Volumen de ambos clips
+    public AudioClip clip1;        
+    public AudioClip clip2;         
+    [Range(0f, 1f)] public float volumen = 1f; 
 
     [Header("Dialog")]
     public Dialog dialog;
 
-    public Image pantalla;          // Panel de policía (sirena)
-    [Range(0f, 1f)] public float alpha = 0.5f; // Opacidad de la imagen durante la alerta
-    public float duracionAlerta = 5f;      // Duración del parpadeo
-    public float velocidadParpadeo = 0.2f; // Tiempo entre cambios de color
+    public Image pantalla;          
+    [Range(0f, 1f)] public float alpha = 0.5f; 
+    public float duracionAlerta = 5f;     
+    public float velocidadParpadeo = 0.2f; 
 
     private NavMeshAgent agent;
     private SpriteRenderer sr;
@@ -65,7 +65,7 @@ public class NPCController : MonoBehaviour
     [HideInInspector]
     public bool isUnmasked = false;
 
-    // Dirección de movimiento para visión y sprite
+    
     public Vector2 MoveDirection { get; private set; } = Vector2.right;
 
     void Start()
@@ -203,10 +203,10 @@ public class NPCController : MonoBehaviour
 
         hasSeenBody = true;
 
-        // Cambiar estado a Alerted
+        
         ChangeState(NPCState.Alerted);
 
-        // Activar icono de alerta
+        
         if (alertIcon)
             alertIcon.SetActive(true);
 
@@ -214,20 +214,19 @@ public class NPCController : MonoBehaviour
         if (agent != null && agent.enabled)
         {
             agent.ResetPath();
-            agent.isStopped = true; // <-- se queda parado
+            agent.isStopped = true; 
         }
 
-        // Iniciar corrutina para quedarse parado y gritar
+        
         StartCoroutine(ReactToBody());
     }
 
-    // Corrutina para reaccionar al cuerpo
     IEnumerator ReactToBody()
     {
-        // Reproducir sonido con pitch aleatorio
+      
         if (audioSource != null && screamClip != null)
         {
-            audioSource.pitch = Random.Range(0.9f, 1.1f); // Pitch aleatorio
+            audioSource.pitch = Random.Range(0.3f, 1f); // Pitch aleatorio
             audioSource.PlayOneShot(screamClip);
         }
 
@@ -248,11 +247,9 @@ public class NPCController : MonoBehaviour
 
         if (agent != null) agent.enabled = false;
 
-        // Cambiar sprite
         if (sr != null && deadSprite != null)
             sr.sprite = deadSprite;
 
-        // Cambiar tag para que otros NPCs lo vean
         gameObject.tag = "DeadBody";
         gameObject.layer = LayerMask.NameToLayer("DeadBody");
     }
@@ -292,7 +289,7 @@ public class NPCController : MonoBehaviour
             agent.isStopped = true;
         }
 
-        // Asignamos el callback para reactivar movimiento cuando se cierre el diálogo
+      
         DialogController.Instance.onDialogClose = FinishInteraction;
 
         DialogController.Instance.ShowDialog(dialog,this);
@@ -313,11 +310,11 @@ public class NPCController : MonoBehaviour
 
     public IEnumerator AlertaFinal()
     {
-        // Activar panel al empezar la alerta
+       
         if (pantalla != null)
             pantalla.gameObject.SetActive(true);
 
-        // Reproducir ambos clips simultáneamente
+        
         if (audioSource != null)
         {
             if (clip1 != null) audioSource.PlayOneShot(clip1, volumen);

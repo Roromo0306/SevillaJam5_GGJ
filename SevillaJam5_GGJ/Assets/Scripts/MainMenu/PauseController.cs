@@ -6,19 +6,6 @@ using UnityEngine.SceneManagement;
 public class PauseController : MonoBehaviour
 {
     public GameObject panelPausa;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        panelPausa.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void AbrirMenuPausa()
     {
         Time.timeScale = 0;

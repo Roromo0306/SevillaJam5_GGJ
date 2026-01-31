@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class FadeManagerPersistente : MonoBehaviour
 {
-    public static FadeManagerPersistente Instance; // Singleton accesible desde cualquier script
+    public static FadeManagerPersistente Instance; 
     public Image fadeImage;
     public float fadeDuration = 1f;
 
     private void Awake()
     {
-        // Singleton: Si ya hay uno, destruye este
+       
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -19,18 +19,16 @@ public class FadeManagerPersistente : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Persiste entre escenas
+        DontDestroyOnLoad(gameObject); 
     }
 
     private void Start()
     {
-        // Hace fade in al cargar la primera escena
+        
         StartCoroutine(FadeIn());
     }
 
-    /// <summary>
-    /// Llama a este método para cambiar de escena con fade
-    /// </summary>
+    
     public void LoadSceneWithFade(string sceneName)
     {
         StartCoroutine(FadeOutAndLoad(sceneName));
@@ -61,7 +59,7 @@ public class FadeManagerPersistente : MonoBehaviour
         }
 
         SetAlpha(1f);
-        // Carga la siguiente escena y espera un frame para iniciar fade in
+        
         SceneManager.LoadScene(sceneName);
         yield return null;
         StartCoroutine(FadeIn());

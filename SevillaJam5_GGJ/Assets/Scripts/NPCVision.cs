@@ -5,8 +5,8 @@ public class NPCVision : MonoBehaviour
     public float radius = 5f;
     public float angle = 90f;
 
-    public LayerMask bodyMask;      // Asegúrate de que incluye la layer del DeadBody
-    public LayerMask obstacleMask;  // Obstáculos que bloquean visión
+    public LayerMask bodyMask;      
+    public LayerMask obstacleMask; 
 
     private NPCController npc;
 
@@ -23,16 +23,16 @@ public class NPCVision : MonoBehaviour
 
         foreach (var h in hits)
         {
-            // Dirección desde NPC al objeto
+            
             Vector2 dir = ((Vector2)h.transform.position - (Vector2)transform.position).normalized;
 
-            // Comprobar si está dentro del cono de visión
+            
             float angleToTarget = Vector2.Angle(npc.MoveDirection, dir);
             if (angleToTarget < angle / 2f)
             {
                 float dist = Vector2.Distance(transform.position, h.transform.position);
 
-                // Comprobar línea de visión (raycast)
+                
                 if (!Physics2D.Raycast(transform.position, dir, dist, obstacleMask))
                 {
                     Debug.Log($"NPC '{npc.name}' ve al objeto '{h.name}' a distancia {dist} y ángulo {angleToTarget}");
