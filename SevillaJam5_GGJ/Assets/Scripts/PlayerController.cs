@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement; // <-- para cambiar escenas
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
     public float killRange = 1f;
     public LayerMask npcLayer;
-    public AudioSource audioSource; 
+    public AudioSource audioSource;
     public AudioClip Killclip;
 
     [Header("Kill Cooldown")]
@@ -16,17 +18,24 @@ public class PlayerController : MonoBehaviour
     private bool canKill = true;
 
     [Header("UI Elements")]
-    public Image cooldownCircle; 
+    public Image cooldownCircle;
     public TextMeshProUGUI cooldownText;
 
     [Header("VFX")]
     public VFX vfxController;
 
+    [Header("Desenmascarar")]
+    public float unmaskRange = 1.5f;
+    public TextMeshProUGUI dialogText; // para mostrar "ese no era"
+    public float dialogDuration = 2f;
+
     private void Start()
     {
         if (cooldownCircle != null) cooldownCircle.gameObject.SetActive(false);
         if (cooldownText != null) cooldownText.gameObject.SetActive(false);
+        if (dialogText != null) dialogText.gameObject.SetActive(false);
     }
+
     void Update()
     {
         Move();
@@ -34,6 +43,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
             TryKill();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Estoy desenmascarando");
+            TryUnmask();
+        }
     }
 
     void Move()
@@ -44,24 +59,23 @@ public class PlayerController : MonoBehaviour
         Vector2 dir = new Vector2(h, v).normalized;
         transform.Translate(dir * speed * Time.deltaTime);
 
-        
-        if (h > 0.01f) 
+        if (h > 0.01f)
         {
             Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x); 
+            scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
-        else if (h < -0.01f) 
+        else if (h < -0.01f)
         {
             Vector3 scale = transform.localScale;
-            scale.x = -Mathf.Abs(scale.x); 
+            scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
     }
 
     void TryKill()
     {
-        if (!canKill) return; // todavía en cooldown
+        if (!canKill) return;
 
         Collider2D hit = Physics2D.OverlapCircle(transform.position, killRange, npcLayer);
         if (hit)
@@ -75,7 +89,6 @@ public class PlayerController : MonoBehaviour
                 if (vfxController != null)
                     vfxController.ActivarEfecto();
 
-                // Iniciar cooldown
                 canKill = false;
                 killTimer = killCooldown;
             }
@@ -90,7 +103,6 @@ public class PlayerController : MonoBehaviour
             if (killTimer < 0f)
                 killTimer = 0f;
 
-            // Activar UI durante cooldown
             if (cooldownCircle != null)
             {
                 cooldownCircle.gameObject.SetActive(true);
@@ -105,12 +117,61 @@ public class PlayerController : MonoBehaviour
             if (killTimer == 0f)
             {
                 canKill = true;
-
-                // Ocultar UI cuando termina el cooldown
                 if (cooldownCircle != null) cooldownCircle.gameObject.SetActive(false);
                 if (cooldownText != null) cooldownText.gameObject.SetActive(false);
             }
         }
     }
 
+    // ---------- NUEVO: desenmascarar NPC ----------
+    void TryUnmask()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, unmaskRange);
+        foreach (Collider2D hit in hits)
+        {
+            NPCController npc = hit.GetComponent<NPCController>();
+            if (npc != null && npc.currentState == NPCState.Dead && !npc.isUnmasked)
+            {
+                npc.isUnmasked = true; // marcamos que ya se desenmascaró
+
+                if (npc.isBoss)
+                {
+                    SceneManager.LoadScene("You Win");
+                }
+                else
+                {
+                    StartCoroutine(ShowTemporaryDialog("ese no era", dialogDuration));
+                }
+
+                break; // solo desenmascarar un NPC a la vez
+            }
+        }
+    }
+
+    IEnumerator ShowTemporaryDialog(string message, float duration)
+    {
+        if (dialogText == null) yield break;
+
+        dialogText.text = "";
+        dialogText.gameObject.SetActive(true);
+
+        // Efecto de escritura
+        float letterDelay = 0.05f; // 50ms entre letras, puedes ajustar
+        foreach (char letter in message)
+        {
+            dialogText.text += letter;
+            yield return new WaitForSeconds(letterDelay);
+        }
+
+        // Esperar un tiempo después de escribir todo el texto
+        yield return new WaitForSeconds(duration);
+
+        dialogText.gameObject.SetActive(false);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, unmaskRange);
+    }
 }

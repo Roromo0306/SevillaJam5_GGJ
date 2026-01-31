@@ -50,6 +50,9 @@ public class NPCController : MonoBehaviour
     private bool dialogActive = false;
     public TimerController timerController;
 
+    [HideInInspector]
+    public bool isUnmasked = false;
+
     // Dirección de movimiento para visión y sprite
     public Vector2 MoveDirection { get; private set; } = Vector2.right;
 
