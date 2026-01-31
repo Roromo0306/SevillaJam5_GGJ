@@ -1568,11 +1568,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387770949}
   m_CullTransparentMesh: 1
---- !u!95 &403179914 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2913912185424580945, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
-  m_PrefabInstance: {fileID: 1916853297}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &471346288
 GameObject:
   m_ObjectHideFlags: 0
@@ -4725,18 +4720,6 @@ PrefabInstance:
       value: MainCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 1497143376599361677, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1497143376599361677, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1497143376599361677, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1497143376599361677, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -4777,10 +4760,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5084800620865750340, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 403179914}
-    - target: {fileID: 5084800620865750340, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
       propertyPath: dialogText
       value: 
       objectReference: {fileID: 1634837801}
@@ -4800,10 +4779,6 @@ PrefabInstance:
       propertyPath: cooldownCircle
       value: 
       objectReference: {fileID: 716352305}
-    - target: {fileID: 5084800620865750340, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
-      propertyPath: desenmascararClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9601538b063c74b4ea4e090df523d705, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

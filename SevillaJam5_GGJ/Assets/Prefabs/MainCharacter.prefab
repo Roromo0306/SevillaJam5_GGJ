@@ -34,15 +34,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: cb9d924b81f30024bb720c728b716056, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: cb9d924b81f30024bb720c728b716056, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: cb9d924b81f30024bb720c728b716056, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.15
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: cb9d924b81f30024bb720c728b716056, type: 3}
       propertyPath: m_LocalPosition.x
@@ -274,6 +274,7 @@ MonoBehaviour:
     m_Bits: 768
   audioSource: {fileID: 0}
   Killclip: {fileID: 8300000, guid: 629191a0d64076e43944101b874afb86, type: 3}
+  desenmascararClip: {fileID: 8300000, guid: 9601538b063c74b4ea4e090df523d705, type: 3}
   killCooldown: 3
   cooldownCircle: {fileID: 0}
   cooldownText: {fileID: 0}
@@ -281,3 +282,4 @@ MonoBehaviour:
   unmaskRange: 1.5
   dialogText: {fileID: 0}
   dialogDuration: 2
+  animator: {fileID: 2913912185424580945}
