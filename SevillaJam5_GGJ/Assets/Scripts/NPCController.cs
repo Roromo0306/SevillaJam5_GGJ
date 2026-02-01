@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
-using System.Collections;
-using UnityEngine.UI;
+﻿using System.Collections;
 using TMPro;
+using UnityEngine;
+using UnityEngine.AI;
+
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class NPCController : MonoBehaviour
@@ -109,14 +110,17 @@ public class NPCController : MonoBehaviour
 
             if (sr != null)
             {
+                Vector3 scale = transform.localScale;
                 if (MoveDirection.x > 0.1f)
                 {
                     //animator.SetBool("isWalking", true);
+                    scale.x = Mathf.Abs(scale.x);
                     sr.flipX = false;
                 }  
                 else if (MoveDirection.x < -0.1f)
                 {
-                   // animator.SetBool("isWalking", true);
+                    // animator.SetBool("isWalking", true);
+                    scale.x = -Mathf.Abs(scale.x);
                     sr.flipX = true;
                 }
                 /*else if(MoveDirection.x == 0)
