@@ -281,7 +281,15 @@ public class NPCController : MonoBehaviour
              sr.sprite = deadSprite;
             sr.sortingOrder = 999;
         }
-           
+
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in renderers)
+        {
+            if (r.material != null)
+            {
+                r.material.color = Color.red;
+            }
+        }
 
         if (animator != null)
             animator.enabled = false;
