@@ -10,6 +10,10 @@ public class InteractableImage : MonoBehaviour
     public GameObject panelUI;
     public Image panelImage;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip paperClip;
+
     private bool playerInside;
 
     private void Awake()
@@ -22,6 +26,7 @@ public class InteractableImage : MonoBehaviour
         if (playerInside && Input.GetKeyDown(KeyCode.F))
         {
             TogglePanel();
+            audioSource.PlayOneShot(paperClip);
         }
     }
 
