@@ -214,6 +214,7 @@ MonoBehaviour:
   clip2: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
   volumen: 0.7
   dialog: {fileID: 71489460}
+  dialogLines: {fileID: 0}
   pantalla: {fileID: 1066599243}
   alpha: 0.5
   duracionAlerta: 5
@@ -722,6 +723,7 @@ MonoBehaviour:
   clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
   volumen: 0.7
   dialog: {fileID: 186853577}
+  dialogLines: {fileID: 0}
   pantalla: {fileID: 1066599243}
   alpha: 0.5
   duracionAlerta: 5
@@ -913,6 +915,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420034}
     - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: dialogLines
+      value: 
+      objectReference: {fileID: 1634837801}
+    - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
       propertyPath: timerController
       value: 
       objectReference: {fileID: 1409468363}
@@ -1069,6 +1075,7 @@ MonoBehaviour:
   clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
   volumen: 0.7
   dialog: {fileID: 269306061}
+  dialogLines: {fileID: 0}
   pantalla: {fileID: 1066599243}
   alpha: 0.5
   duracionAlerta: 5
