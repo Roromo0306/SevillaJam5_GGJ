@@ -23,6 +23,9 @@ public class NPCController : MonoBehaviour
     public MovementType movementType = MovementType.Free;
     private int currentWaypointIndex = 0;
 
+    [Header("Animator")]
+    public Animator animator;
+
     [Header("Interaction")]
     public float interactRadius = 1.5f;
     private bool playerInRange = false;
@@ -92,9 +95,20 @@ public class NPCController : MonoBehaviour
             if (sr != null)
             {
                 if (MoveDirection.x > 0.1f)
+                {
+                    animator.SetBool("isWalking", true);
                     sr.flipX = false;
+                }  
                 else if (MoveDirection.x < -0.1f)
+                {
+                    animator.SetBool("isWalking", true);
                     sr.flipX = true;
+                }
+                else if(MoveDirection.x == 0)
+                {
+                    animator.SetBool("isWalking", false);
+                }
+                    
             }
         }
 
