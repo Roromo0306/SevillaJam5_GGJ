@@ -32,17 +32,23 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animator")]
     public Animator animator;
+    private Rigidbody2D rb;
 
+    
     private void Start()
     {
         if (cooldownCircle != null) cooldownCircle.gameObject.SetActive(false);
         if (cooldownText != null) cooldownText.gameObject.SetActive(false);
         if (dialogText != null) dialogText.gameObject.SetActive(false);
+        rb = GetComponent<Rigidbody2D>();
     }
-
-    void Update()
+    private void FixedUpdate()
     {
         Move();
+    }
+    void Update()
+    {
+        
         HandleCooldown();
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -57,13 +63,11 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        
-
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
         Vector2 dir = new Vector2(h, v).normalized;
-        transform.Translate(dir * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + dir * speed * Time.fixedDeltaTime);
 
         if (h > 0.01f)
         {
@@ -79,7 +83,7 @@ public class PlayerController : MonoBehaviour
             scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
-        else if(h == 0)
+        else
         {
             animator.SetBool("isWalking", false);
         }
