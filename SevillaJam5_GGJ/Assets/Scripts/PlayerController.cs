@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(ShowTemporaryDialog("ese no era", dialogDuration));
+                    StartCoroutine(ShowTemporaryDialog("Ese no es el objetivo...", dialogDuration));
                 }
 
                 return; 

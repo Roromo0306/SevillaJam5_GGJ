@@ -255,7 +255,7 @@ public class NPCController : MonoBehaviour
       
         if (audioSource != null && screamClip != null)
         {
-            audioSource.pitch = Random.Range(0.3f, 1f); // Pitch aleatorio
+            audioSource.pitch = Random.Range(0.7f, 1f); // Pitch aleatorio
             audioSource.PlayOneShot(screamClip);
         }
 
