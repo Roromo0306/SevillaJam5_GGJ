@@ -178,6 +178,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
+  heightOffset: 0.29
 --- !u!114 &71489454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,6 +688,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
+  heightOffset: 0
 --- !u!114 &186853571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,6 +980,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8620022841815556550, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: heightOffset
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620022841815556550, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: visionOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620022841815556550, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: visionOffset.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1039,6 +1053,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
+  heightOffset: 0
 --- !u!114 &269306055
 MonoBehaviour:
   m_ObjectHideFlags: 0
