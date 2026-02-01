@@ -139,13 +139,18 @@ public class PlayerController : MonoBehaviour
     void TryUnmask()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, unmaskRange);
+
         foreach (Collider2D hit in hits)
         {
-            audioSource.PlayOneShot(desenmascararClip);
             NPCController npc = hit.GetComponent<NPCController>();
+
             if (npc != null && npc.currentState == NPCState.Dead && !npc.isUnmasked)
             {
-                npc.isUnmasked = true; 
+                Debug.Log("NPC desenmascarado: " + npc.name);
+
+                audioSource.PlayOneShot(desenmascararClip);
+
+                npc.isUnmasked = true;
 
                 if (npc.isBoss)
                 {
@@ -156,28 +161,30 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(ShowTemporaryDialog("ese no era", dialogDuration));
                 }
 
-                break;
+                return; // 👈 salimos al encontrar uno válido
             }
         }
+
+        Debug.Log("No hay NPC muerto para desenmascarar");
     }
 
     IEnumerator ShowTemporaryDialog(string message, float duration)
     {
+        Debug.Log("MOSTRANDO TEXTO: " + message);
         if (dialogText == null) yield break;
 
         dialogText.text = "";
         dialogText.gameObject.SetActive(true);
 
-        // Efecto de escritura
-        float letterDelay = 0.05f; 
+        float letterDelay = 0.05f;
+
         foreach (char letter in message)
         {
             dialogText.text += letter;
-            yield return new WaitForSeconds(letterDelay);
+            yield return new WaitForSecondsRealtime(letterDelay);
         }
 
-        
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
 
         dialogText.gameObject.SetActive(false);
     }

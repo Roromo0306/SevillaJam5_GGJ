@@ -2,6 +2,7 @@
 using UnityEngine.AI;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class NPCController : MonoBehaviour
@@ -23,6 +24,7 @@ public class NPCController : MonoBehaviour
     public MovementType movementType = MovementType.Free;
     private int currentWaypointIndex = 0;
 
+    [Header("Animator")]
     [Header("Animator")]
     public Animator animator;
 
@@ -51,6 +53,7 @@ public class NPCController : MonoBehaviour
 
     [Header("Dialog")]
     public Dialog dialog;
+    public TextMeshProUGUI dialogLines;
 
     public Image pantalla;          
     [Range(0f, 1f)] public float alpha = 0.5f; 
@@ -68,13 +71,17 @@ public class NPCController : MonoBehaviour
     [HideInInspector]
     public bool isUnmasked = false;
 
-    
+    private Transform player;
     public Vector2 MoveDirection { get; private set; } = Vector2.right;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         sr = GetComponent<SpriteRenderer>();
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+            player = playerObj.transform;
 
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -87,6 +94,14 @@ public class NPCController : MonoBehaviour
         if (currentState == NPCState.Dead) return; 
         if (currentState == NPCState.Interacting)return;
 
+        // 🔧 RESPALDO DE INTERACCIÓN POR DISTANCIA
+        if (!playerInRange && player != null)
+        {
+            float dist = Vector2.Distance(transform.position, player.position);
+            if (dist <= interactRadius)
+                playerInRange = true;
+        }
+
         // Actualizar dirección de movimiento
         if (agent.velocity.sqrMagnitude > 0.01f)
         {
@@ -96,18 +111,18 @@ public class NPCController : MonoBehaviour
             {
                 if (MoveDirection.x > 0.1f)
                 {
-                    animator.SetBool("isWalking", true);
+                    //animator.SetBool("isWalking", true);
                     sr.flipX = false;
                 }  
                 else if (MoveDirection.x < -0.1f)
                 {
-                    animator.SetBool("isWalking", true);
+                   // animator.SetBool("isWalking", true);
                     sr.flipX = true;
                 }
-                else if(MoveDirection.x == 0)
+                /*else if(MoveDirection.x == 0)
                 {
                     animator.SetBool("isWalking", false);
-                }
+                }*/
                     
             }
         }
@@ -262,7 +277,14 @@ public class NPCController : MonoBehaviour
         if (agent != null) agent.enabled = false;
 
         if (sr != null && deadSprite != null)
-            sr.sprite = deadSprite;
+        {
+             sr.sprite = deadSprite;
+            sr.sortingOrder = 999;
+        }
+           
+
+        if (animator != null)
+            animator.enabled = false;
 
         gameObject.tag = "DeadBody";
         gameObject.layer = LayerMask.NameToLayer("DeadBody");
@@ -279,21 +301,18 @@ public class NPCController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInRange = true;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInRange = false;
-        }
     }
     public void Interact()
     {
-        if (currentState == NPCState.Interacting) return;
+        if (currentState == NPCState.Dead || currentState == NPCState.Interacting)
+            return;
 
         ChangeState(NPCState.Interacting);
 
@@ -303,10 +322,16 @@ public class NPCController : MonoBehaviour
             agent.isStopped = true;
         }
 
-      
-        DialogController.Instance.onDialogClose = FinishInteraction;
-
-        DialogController.Instance.ShowDialog(dialog,this);
+        if (dialog != null && DialogController.Instance != null)
+        {
+            DialogController.Instance.onDialogClose = FinishInteraction;
+            DialogController.Instance.ShowDialog(dialog, this);
+        }
+        else
+        {
+            Debug.LogWarning("NPC " + name + " no tiene dialog asignado o DialogController no existe.");
+            FinishInteraction();
+        }
     }
 
     public void FinishInteraction()
