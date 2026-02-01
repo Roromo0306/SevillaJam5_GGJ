@@ -552,11 +552,11 @@ MonoBehaviour:
   lines:
   - Agente.
   - 'Tu objetivo: Isabella Preziozzi.'
-  - "Durante a\xF1os, ha movido los hilos detras de grandes tragedias. "
+  - 'Lleva tiempo  los hilos detras de grandes tragedias. '
   - Ha traicionado aliados y vendido secretos a cambio de dinero.
   - Hoy organiza un baile de mascaras.
   - 'Un evento lujoso, lleno de invitados que ignoran la verdad. '
-  - "Tu misi\xF3n: infiltrarte, descubrir su ubicaci\xF3n y <link=shake>neutralizarla</link>."
+  - 'Tu mision: infiltrarte, descubrir su ubicacion y <link=shake>neutralizarla</link>.'
   - No hay margen de <link=shake>error</link>.
   typingSpeed: 0.06
   audioSource: {fileID: 71868807}

@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
                 if (vfxController != null)
                     vfxController.ActivarEfecto();
 
+                
+
                 canKill = false;
                 killTimer = killCooldown;
             }
@@ -161,7 +163,8 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(ShowTemporaryDialog("ese no era", dialogDuration));
                 }
 
-                return; // 👈 salimos al encontrar uno válido
+                return; 
+
             }
         }
 
