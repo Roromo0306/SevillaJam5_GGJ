@@ -123,7 +123,15 @@ public class NPCController : MonoBehaviour
                 {
                     animator.SetBool("isWalking", false);
                 }*/
-                    
+
+                if (animator != null)
+                    animator.SetBool("A", true);
+
+            }
+            else
+            {
+                if (animator != null)
+                    animator.SetBool("A", false);
             }
         }
 

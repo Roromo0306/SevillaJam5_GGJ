@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseController : MonoBehaviour
 {
     public GameObject panelPausa;
+
+    private void Start()
+    {
+        panelPausa.SetActive(false);    
+    }
     public void AbrirMenuPausa()
     {
         Time.timeScale = 0;
