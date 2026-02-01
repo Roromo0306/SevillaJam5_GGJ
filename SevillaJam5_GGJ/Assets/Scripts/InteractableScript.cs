@@ -41,6 +41,7 @@ public class InteractableImage : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInside = true;
+            Debug.Log("Player entered trigger");
         }
     }
 
@@ -50,9 +51,9 @@ public class InteractableImage : MonoBehaviour
         {
             playerInside = false;
             panelUI.SetActive(false);
+            Debug.Log("Player exited trigger");
         }
     }
-
     public void ClosePanel()
     {
         panelUI.SetActive(false);
