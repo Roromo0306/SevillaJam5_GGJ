@@ -1100,8 +1100,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: alpha
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
       propertyPath: isBoss
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: volumen
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
       propertyPath: pantalla
@@ -2391,8 +2399,16 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
+      propertyPath: alpha
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
       propertyPath: isBoss
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
+      propertyPath: volumen
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
       propertyPath: pantalla
@@ -3345,8 +3361,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: alpha
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
       propertyPath: isBoss
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: volumen
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
       propertyPath: pantalla
@@ -3847,8 +3871,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: alpha
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
       propertyPath: isBoss
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
+      propertyPath: volumen
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 62825656455746148, guid: 012e193ba599d9642a5d8b8b30e99f32, type: 3}
       propertyPath: pantalla
@@ -4349,6 +4381,14 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
+      propertyPath: alpha
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
+      propertyPath: volumen
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
       propertyPath: pantalla
       value: 
       objectReference: {fileID: 1066599243}
@@ -4782,11 +4822,11 @@ MonoBehaviour:
   isBoss: 0
   clip1: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
   clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
-  volumen: 0.7
+  volumen: 0.4
   dialog: {fileID: 859112619}
   dialogLines: {fileID: 1634837801}
   pantalla: {fileID: 1066599243}
-  alpha: 0.5
+  alpha: 0.3
   duracionAlerta: 5
   velocidadParpadeo: 0.2
   timerController: {fileID: 1409468363}
@@ -5166,6 +5206,14 @@ PrefabInstance:
     - target: {fileID: 8900073049235206808, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
       propertyPath: m_Speed
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
+      propertyPath: alpha
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
+      propertyPath: volumen
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
       propertyPath: pantalla
@@ -6323,6 +6371,14 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
+      propertyPath: alpha
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
+      propertyPath: volumen
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975830125941455383, guid: da192dabaa4d5284bb7d0690ca6ad36e, type: 3}
       propertyPath: pantalla
       value: 
       objectReference: {fileID: 1066599243}
@@ -7342,11 +7398,11 @@ MonoBehaviour:
   isBoss: 0
   clip1: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
   clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
-  volumen: 0.7
+  volumen: 0.4
   dialog: {fileID: 1584645125}
   dialogLines: {fileID: 1634837801}
   pantalla: {fileID: 1066599243}
-  alpha: 0.5
+  alpha: 0.3
   duracionAlerta: 5
   velocidadParpadeo: 0.2
   timerController: {fileID: 1409468363}
@@ -9535,11 +9591,11 @@ MonoBehaviour:
   isBoss: 0
   clip1: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
   clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
-  volumen: 0.7
+  volumen: 0.4
   dialog: {fileID: 1988225528}
   dialogLines: {fileID: 1634837801}
   pantalla: {fileID: 1066599243}
-  alpha: 0.5
+  alpha: 0.3
   duracionAlerta: 5
   velocidadParpadeo: 0.2
   timerController: {fileID: 1409468363}
