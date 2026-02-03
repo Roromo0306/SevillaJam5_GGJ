@@ -55,6 +55,9 @@ public class NPCController : MonoBehaviour
     [Header("Dialog")]
     public Dialog dialog;
     public TextMeshProUGUI dialogLines;
+    [SerializeField] private bool hasTalked = false;
+    
+
 
     public Image pantalla;          
     [Range(0f, 1f)] public float alpha = 0.5f; 
@@ -71,6 +74,10 @@ public class NPCController : MonoBehaviour
     private bool alertaFinalIniciada = false;
     [HideInInspector]
     public bool isUnmasked = false;
+
+    private bool playerNear = false;
+    private bool dialogShown = false;
+
 
     private Transform player;
     public Vector2 MoveDirection { get; private set; } = Vector2.right;
@@ -137,6 +144,11 @@ public class NPCController : MonoBehaviour
                 if (animator != null)
                     animator.SetBool("A", false);
             }
+        }
+
+        if (playerInRange && Input.GetKeyDown(KeyCode.Space))
+        {
+            Interact();
         }
 
         switch (currentState)
@@ -321,17 +333,21 @@ public class NPCController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = false;
+        }
     }
     public void Interact()
     {
-        if (currentState == NPCState.Dead || currentState == NPCState.Interacting)
+        /*if (currentState == NPCState.Dead || currentState == NPCState.Interacting)
             return;
 
         ChangeState(NPCState.Interacting);
@@ -351,7 +367,22 @@ public class NPCController : MonoBehaviour
         {
             Debug.LogWarning("NPC " + name + " no tiene dialog asignado o DialogController no existe.");
             FinishInteraction();
+        }*/
+        if (currentState == NPCState.Dead ||
+        currentState == NPCState.Interacting)
+            return;
+
+        ChangeState(NPCState.Interacting);
+        hasTalked = true;
+
+        if (agent != null && agent.enabled)
+        {
+            agent.ResetPath();
+            agent.isStopped = true;
         }
+
+        DialogController.Instance.onDialogClose = FinishInteraction;
+        DialogController.Instance.ShowDialog(dialog, this);
     }
 
     public void FinishInteraction()

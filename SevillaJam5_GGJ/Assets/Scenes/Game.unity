@@ -431,8 +431,9 @@ MonoBehaviour:
   clip1: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
   clip2: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
   volumen: 0.7
-  dialog: {fileID: 71489460}
+  dialog: {fileID: 0}
   dialogLines: {fileID: 0}
+  hasTalked: 0
   pantalla: {fileID: 1066599243}
   alpha: 0.5
   duracionAlerta: 5
@@ -1213,8 +1214,9 @@ MonoBehaviour:
   clip1: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
   clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
   volumen: 0.7
-  dialog: {fileID: 186853577}
+  dialog: {fileID: 0}
   dialogLines: {fileID: 0}
+  hasTalked: 0
   pantalla: {fileID: 1066599243}
   alpha: 0.5
   duracionAlerta: 5
@@ -1854,8 +1856,9 @@ MonoBehaviour:
   clip1: {fileID: 8300000, guid: b1e7859abd2a1ae4b8fc9db8a321eec8, type: 3}
   clip2: {fileID: 8300000, guid: 401264697577c514cbe098c639b46efc, type: 3}
   volumen: 0.7
-  dialog: {fileID: 269306061}
+  dialog: {fileID: 0}
   dialogLines: {fileID: 0}
+  hasTalked: 0
   pantalla: {fileID: 1066599243}
   alpha: 0.5
   duracionAlerta: 5
@@ -5955,6 +5958,7 @@ MonoBehaviour:
   volumen: 0.4
   dialog: {fileID: 859112619}
   dialogLines: {fileID: 1634837801}
+  hasTalked: 0
   pantalla: {fileID: 1066599243}
   alpha: 0.3
   duracionAlerta: 5
@@ -9724,6 +9728,7 @@ MonoBehaviour:
   volumen: 0.4
   dialog: {fileID: 1584645125}
   dialogLines: {fileID: 1634837801}
+  hasTalked: 0
   pantalla: {fileID: 1066599243}
   alpha: 0.3
   duracionAlerta: 5
@@ -12577,6 +12582,7 @@ MonoBehaviour:
   volumen: 0.4
   dialog: {fileID: 1988225528}
   dialogLines: {fileID: 1634837801}
+  hasTalked: 0
   pantalla: {fileID: 1066599243}
   alpha: 0.3
   duracionAlerta: 5
