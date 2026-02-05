@@ -11999,6 +11999,18 @@ PrefabInstance:
       value: MainCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 996018598313154233, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 996018598313154233, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 996018598313154233, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 996018598313154233, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
@@ -12045,6 +12057,10 @@ PrefabInstance:
     - target: {fileID: 1497143376599361677, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913912185424580945, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5084800620865750340, guid: f3bedcec3ad9ce7418f2c6349641b272, type: 3}
       propertyPath: speed
