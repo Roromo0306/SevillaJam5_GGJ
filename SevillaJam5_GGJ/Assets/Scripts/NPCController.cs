@@ -55,7 +55,7 @@ public class NPCController : MonoBehaviour
     [Header("Dialog")]
     public Dialog dialog;
     public TextMeshProUGUI dialogLines;
-    [SerializeField] private bool hasTalked = false;
+    [SerializeField] public bool hasTalked = false;
     
 
 
@@ -347,33 +347,13 @@ public class NPCController : MonoBehaviour
     }
     public void Interact()
     {
-        /*if (currentState == NPCState.Dead || currentState == NPCState.Interacting)
-            return;
-
-        ChangeState(NPCState.Interacting);
-
-        if (agent != null && agent.enabled)
-        {
-            agent.ResetPath();
-            agent.isStopped = true;
-        }
-
-        if (dialog != null && DialogController.Instance != null)
-        {
-            DialogController.Instance.onDialogClose = FinishInteraction;
-            DialogController.Instance.ShowDialog(dialog, this);
-        }
-        else
-        {
-            Debug.LogWarning("NPC " + name + " no tiene dialog asignado o DialogController no existe.");
-            FinishInteraction();
-        }*/
         if (currentState == NPCState.Dead ||
-        currentState == NPCState.Interacting)
+        currentState == NPCState.Interacting ||
+        hasTalked)
             return;
 
         ChangeState(NPCState.Interacting);
-        hasTalked = true;
+        hasTalked = true; 
 
         if (agent != null && agent.enabled)
         {
@@ -387,15 +367,20 @@ public class NPCController : MonoBehaviour
 
     public void FinishInteraction()
     {
-        if (currentState == NPCState.Interacting)
-        {
-            ChangeState(NPCState.Walking);
+        if (currentState != NPCState.Interacting)
+            return;
 
-            if (agent != null && agent.enabled)
-            {
-                agent.isStopped = false;
-            }
+        ChangeState(NPCState.Walking);
+
+        if (agent != null && agent.enabled)
+        {
+            agent.isStopped = false;
+            agent.ResetPath(); 
         }
+
+        
+        StopAllCoroutines();
+        isWaiting = false;
     }
 
     public IEnumerator AlertaFinal()
